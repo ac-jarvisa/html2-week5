@@ -191,11 +191,29 @@ input{
 	background:lightblue;
 }
 
+.shape1:nth-child(1){
+	/* call the animation called pendulum */
+	animation-name: pendulum;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	/* use animation-direction to make the animation run start-to-finish, finish-to-start*/
+	animation-direction: alternate;
+	/* use the animation timing function to smooth the animation and make it more realistic */
+	animation-timing-function: ease-in-out;
+}
+
 .shape1:nth-child(2){
 	/* use the transform property to add a rotation to this element */
 	transform: rotate(45deg);
 	/* use transition to animate a change in the transform */
 	transition: all 2s;
+
+	/* call the animation called "jump" and tell it how long to run */
+	animation-name: jump;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-delay:0.25s;
 }
 /* add an animation on hover */
 .shape1:nth-child(2):hover{
@@ -208,13 +226,64 @@ input{
 	/* for scale: 1 is the default size 
 	one value scales equally on the x and y axis - two values scales different on the 
 	x then y axis */
+
+	/* call the animation called "jump" and tell it how long to run */
+	animation-name: jump;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-delay:0.5s;
 }
 .shape1:nth-child(4){
 	/* use the transform property to add a skew (distortion) to this element */
 	transform: skew(20deg, 10deg);
+
+	/* call the animation called "jump" and tell it how long to run */
+	animation-name: jump;
+	animation-duration: 2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-delay:0.75s;
 }
 
 .shape1:nth-child(5){
 	/* apply multiple transform in the same transform property */
 	transform: rotate(30deg) scale(0.8) skew(5deg, 10deg);
+
+	/* call the animation called "jump" and tell it how long to run */
+	animation-name: jump;
+	animation-duration: 2s;
+	/* the above two are mandatory - every other property is optional */
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite; /* infinite will run forever; or give it a number */
+	animation-delay:1s;
+}
+
+/******************************************
+		Animations
+******************************************/
+/* CSS animation has two parts: setting up the animation keyframes, and calling the 
+animation on an object */
+
+@keyframes jump{
+	/* inside the @keyframes we define the shape of the animation, then call it using
+	the animation name ("jump" in this case) on the object we want to animate */
+	50% {
+		transform: translate(0, -100px);
+	}
+}
+
+@keyframes pendulum{
+	/* use the transform origin to change the point about which the object rotates */
+	0%,
+	100%{
+		transform-origin: 0 -100px;
+	}
+
+	0%{
+		transform: rotate(77deg)
+	}
+	100%{
+		transform: rotate(-45deg);
+	}
 }
